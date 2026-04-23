@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Khadija Madam 💖</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffe6ec, #ffd6e0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  color: #ff4d88;
+  animation: float 5s linear infinite;
+}
+
+@keyframes float {
+  0% {transform: translateY(100vh) scale(0.5);}
+  100% {transform: translateY(-10vh) scale(1);}
+}
+
+/* Card */
+.card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  width: 320px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+h1 { color: #ff4d88; }
+
+img {
+  width: 130px;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  position: relative;
+  height: 70px;
+}
+
+button {
+  border: none;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+  transition: 0.3s;
+}
+
+.yes {
+  background: linear-gradient(45deg, #ff4d88, #ff99aa);
+  color: white;
+}
+
+.no {
+  background: #eee;
+  position: absolute;
+}
+
+button:hover { transform: scale(1.1); }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <audio id="music" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
+  <img id="img" src="img/cat.jpg">
+  <h1 id="title">Khadija Madam... forgive me? 🥺</h1>
+  <p id="text">I know I messed up 💔<br>Please give me one chance?</p>
+
+  <div class="buttons">
+    <button class="yes" onclick="yesClicked()">YES 💖</button>
+    <button class="no" id="noBtn">NO 😢</button>
+  </div>
+</div>
+
+<script>
+let noClickCount = 0;
+const noBtn = document.getElementById("noBtn");
+
+/* Floating hearts */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 10 + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
+}, 300);
+
+/* NO button logic */
+noBtn.addEventListener("click", () => {
+  noClickCount++;
+
+  if(noClickCount === 1){
+    document.getElementById("title").innerHTML = "Sach me NO? 😭";
+    document.getElementById("text").innerHTML = "Ek aur chance de do na Khadija Madam 🥺";
+  }
+});
+
+noBtn.addEventListener("mouseover", () => {
+  if(noClickCount >= 1){
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 200 - 100;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  }
+});
+
+/* YES click */
+function yesClicked(){
+
+  // Play music
+  document.getElementById("music").play().catch(()=>{});
+
+  // Confetti
+  for(let i=0;i<80;i++){
+    const conf = document.createElement("div");
+    conf.innerHTML = "🎉";
+    conf.style.position = "absolute";
+    conf.style.left = Math.random()*100+"vw";
+    conf.style.top = "-10px";
+    conf.style.fontSize = "20px";
+    conf.style.animation = "fall 3s linear forwards";
+    document.body.appendChild(conf);
+
+    setTimeout(()=>conf.remove(),3000);
+  }
+
+  // Confetti animation
+  const style = document.createElement("style");
+  style.innerHTML = `
+    @keyframes fall {
+      to { transform: translateY(100vh); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // FINAL SCREEN instantly
+  document.body.innerHTML += `
+    <div style="position:fixed;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;background:#ffe6ec;text-align:center;">
+      <div>
+        <h1 style="color:#ff4d88;">Yayyyy Khadija Madam 🥰💖</h1>
+        <p>You forgave me 😭💖<br>You are seriously the best!</p>
+      </div>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
